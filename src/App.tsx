@@ -4,12 +4,12 @@ import "./App.css";
 
 const App = () => {
   return (
-    <div>
+    <>
       <Routes>
         <Route path="/" />
         <Route path="offers" element={<Offers />} />
       </Routes>
-    </div>
+    </>
   );
 };
 
