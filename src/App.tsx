@@ -1,14 +1,12 @@
-import Offers from "pages/offers";
-import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import NextHeader from "./components/Header";
+import NextRouter from "./components/Router";
 
 const App = () => {
   return (
     <>
-      <Routes>
-        <Route path="/" />
-        <Route path="offers" element={<Offers />} />
-      </Routes>
+      <NextHeader></NextHeader>
+      <NextRouter></NextRouter>
     </>
   );
 };

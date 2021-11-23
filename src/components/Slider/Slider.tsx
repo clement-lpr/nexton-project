@@ -1,8 +1,8 @@
 import { Box, Grid, Slider, Typography } from "@mui/material";
 import { useState } from "react";
 
-const valuetext = (value: any) => {
-  return `${value}°C`;
+const valuetext = (value: number, index: number) => {
+  return `${value.toString()}°C`;
 };
 
 interface Props {

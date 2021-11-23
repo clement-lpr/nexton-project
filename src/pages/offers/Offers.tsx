@@ -1,6 +1,6 @@
+import NextSearch from "@components/Search";
+import NextSlider from "@components/Slider";
 import { Container, Grid } from "@mui/material";
-import NextSearch from "../../components/Search";
-import NextSlider from "../../components/Slider";
 
 const Offers = () => {
   return (
