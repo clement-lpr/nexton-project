@@ -1,3 +1,3 @@
-import Offers from "./Offers";
+import NextOffers from "./Offers";
 
-export default Offers;
+export default NextOffers;

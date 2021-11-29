@@ -1,6 +1,6 @@
 import "./App.css";
-import NextHeader from "./components/Header";
-import NextRouter from "./components/Router";
+import NextHeader from "./components/common/header";
+import NextRouter from "./components/common/router";
 
 const App = () => {
   return (

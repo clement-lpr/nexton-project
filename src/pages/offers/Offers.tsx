@@ -1,8 +1,12 @@
-import NextSearch from "@components/Search";
-import NextSlider from "@components/Slider";
+import NextForm from "@components/offers/form";
+import NextSearch from "@components/offers/search";
+import NextSlider from "@components/offers/slider";
 import { Container, Grid } from "@mui/material";
 
-const Offers = () => {
+const NextOffers = () => {
+  // const count = useSelector(selectCount);
+  // const dispatch = useDispatch();
+
   return (
     <>
       <Container maxWidth="lg">
@@ -25,14 +29,21 @@ const Offers = () => {
             ></NextSearch>
           </Grid>
           <Grid item xs={3}>
-            <NextSlider label="Date de l'offre"></NextSlider>
+            <NextSlider
+              name={"Date de l'offre"}
+              // control={control}
+              // setValue={setValue}
+              label={"Slider Input"}
+            ></NextSlider>
           </Grid>
           <Grid item xs={7}></Grid>
         </Grid>
       </Container>
       <Container maxWidth="md"></Container>
+
+      <NextForm />
     </>
   );
 };
 
-export default Offers;
+export default NextOffers;
