@@ -3,7 +3,9 @@
     "baseUrl": "./src",
     "paths": {
       "@components/*": ["components/*"],
-      "@pages/*": ["pages/*"]
+      "@models/*": ["models/*"],
+      "@pages/*": ["pages/*"],
+      "@redux/*": ["redux/*"]
     }
   }
 }

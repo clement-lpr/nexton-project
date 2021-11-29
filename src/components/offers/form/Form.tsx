@@ -1,4 +1,4 @@
-import { Button, Paper, Typography } from "@mui/material";
+import { Button, Grid, Paper, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import NextFormInputText from "./textInput";
 
@@ -31,16 +31,47 @@ export const NextForm = () => {
         display: "grid",
         gridRowGap: "20px",
         padding: "20px",
-        margin: "10px 300px",
       }}
     >
-      <Typography variant="h6"> Form Demo</Typography>
+      <Typography variant="h6"> Création d'une offre</Typography>
+      <Grid container spacing={3}>
+        <NextFormInputText
+          name="textValue1"
+          control={control}
+          label="Nom de l'entreprise"
+        />
+        <NextFormInputText
+          name="textValue2"
+          control={control}
+          label="Ingénieur d'affaire"
+        />{" "}
+        <NextFormInputText
+          name="textValue3"
+          control={control}
+          label="Date de création"
+        />
+        <NextFormInputText
+          name="textValue3"
+          control={control}
+          label="Années d'expérience"
+        />{" "}
+        <NextFormInputText
+          name="textValue3"
+          control={control}
+          label="Description"
+        />{" "}
+        <NextFormInputText
+          name="textValue3"
+          control={control}
+          label="Compétences"
+        />{" "}
+        <NextFormInputText
+          name="textValue3"
+          control={control}
+          label="Société"
+        />
+      </Grid>
 
-      <NextFormInputText
-        name="textValue"
-        control={control}
-        label="Text Input"
-      />
       {/* <FormInputRadio
         name={"radioValue"}
         control={control}
@@ -65,14 +96,27 @@ export const NextForm = () => {
         label={"Slider Input"}
       /> */}
 
-      <Button onClick={handleSubmit(onSubmit)} variant={"contained"}>
-        {" "}
-        Submit{" "}
-      </Button>
-      <Button onClick={() => reset()} variant={"outlined"}>
-        {" "}
-        Reset{" "}
-      </Button>
+      <Grid container spacing={0.5} alignItems="center" justifyContent="center">
+        <Grid item xs={9}></Grid>
+        <Grid item xs={3}>
+          <Button
+            style={{ marginLeft: "1em" }}
+            onClick={handleSubmit(onSubmit)}
+            variant={"contained"}
+          >
+            {" "}
+            Créer{" "}
+          </Button>
+          <Button
+            style={{ marginLeft: "1em" }}
+            onClick={() => reset()}
+            variant={"outlined"}
+          >
+            {" "}
+            Annuler{" "}
+          </Button>
+        </Grid>
+      </Grid>
     </Paper>
   );
 };

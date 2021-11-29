@@ -16,13 +16,13 @@ const NextOffers = () => {
           alignItems="center"
           justifyContent="center"
         >
-          <Grid item xs={5}>
+          <Grid item xs={6}>
             <NextSearch
               options={[]}
               label="Rechercher une compagnie"
             ></NextSearch>
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={6}>
             <NextSearch
               options={[]}
               label="Rechercher une compétence"
@@ -41,7 +41,12 @@ const NextOffers = () => {
       </Container>
       <Container maxWidth="md"></Container>
 
-      <NextForm />
+      <Grid container spacing={0.5} alignItems="center" justifyContent="center">
+        <Grid item xs={12}>
+          {" "}
+          <NextForm />
+        </Grid>
+      </Grid>
     </>
   );
 };
