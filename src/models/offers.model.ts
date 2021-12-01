@@ -1,9 +1,9 @@
 export default interface Offer {
-  abilities: string[];
+  abilities: string;
   businessEngineer: string;
   company: string;
-  creationDate: Date;
+  creationDate: string;
   description: string;
-  experience: number;
+  experience: string;
   name: string;
 }

@@ -4,9 +4,6 @@ import NextSlider from "@components/offers/slider";
 import { Container, Grid } from "@mui/material";
 
 const NextOffers = () => {
-  // const count = useSelector(selectCount);
-  // const dispatch = useDispatch();
-
   return (
     <>
       <Container maxWidth="lg">

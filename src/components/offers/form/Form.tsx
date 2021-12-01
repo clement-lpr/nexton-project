@@ -1,29 +1,46 @@
 import { Button, Grid, Paper, Typography } from "@mui/material";
+import { addOffer } from "@redux/reducers/offerReducer/offerReducer";
+import { RootState, selectOffers } from "@redux/store";
 import { useForm } from "react-hook-form";
+import { connect, useDispatch, useSelector } from "react-redux";
 import NextFormInputText from "./textInput";
 
 interface IFormInput {
-  textValue: string;
-  radioValue: string;
-  checkboxValue: string[];
-  dateValue: Date;
-  dropdownValue: string;
-  sliderValue: number;
+  abilities: string;
+  businessEngineer: string;
+  company: string;
+  creationDate: string;
+  description: string;
+  experience: string;
+  name: string;
 }
 
 const defaultValues = {
-  textValue: "",
-  radioValue: "",
-  checkboxValue: [],
-  dateValue: new Date(),
-  dropdownValue: "",
-  sliderValue: 0,
+  abilities: "",
+  businessEngineer: "",
+  company: "",
+  creationDate: "",
+  description: "",
+  experience: "",
+  name: "",
 };
 
-export const NextForm = () => {
+export const NextForm = (props: any) => {
   const methods = useForm<IFormInput>({ defaultValues: defaultValues });
   const { handleSubmit, reset, control } = methods;
-  const onSubmit = (data: IFormInput) => console.log(data);
+  const offers = useSelector(selectOffers);
+  const dispatch = useDispatch();
+
+  const onSubmit = (data: IFormInput) => {
+    // props.addOffer(data);
+    dispatch(addOffer(data));
+  };
+
+  //  const onAddTodo = useCallback(() => {
+  //      dispatch(addOffer(newTodoRef.current.value));
+  //      newTodoRef.current.value = "";
+  //    }
+  //  }, [dispatch]);
 
   return (
     <Paper
@@ -36,40 +53,36 @@ export const NextForm = () => {
       <Typography variant="h6"> Création d'une offre</Typography>
       <Grid container spacing={3}>
         <NextFormInputText
-          name="textValue1"
+          name="company"
           control={control}
           label="Nom de l'entreprise"
         />
+        <NextFormInputText name="name" control={control} label="Nom du poste" />
         <NextFormInputText
-          name="textValue2"
+          name="businessEngineer"
           control={control}
           label="Ingénieur d'affaire"
         />{" "}
         <NextFormInputText
-          name="textValue3"
+          name="creationDate"
           control={control}
           label="Date de création"
         />
         <NextFormInputText
-          name="textValue3"
+          name="experience"
           control={control}
           label="Années d'expérience"
         />{" "}
         <NextFormInputText
-          name="textValue3"
+          name="description"
           control={control}
           label="Description"
         />{" "}
         <NextFormInputText
-          name="textValue3"
+          name="abilities"
           control={control}
           label="Compétences"
         />{" "}
-        <NextFormInputText
-          name="textValue3"
-          control={control}
-          label="Société"
-        />
       </Grid>
 
       {/* <FormInputRadio
@@ -120,4 +133,15 @@ export const NextForm = () => {
     </Paper>
   );
 };
-export default NextForm;
+
+const mapStateToProps = (state: RootState) => ({ offers: state.offers.offer });
+const mapDispatchToProps = {
+  addOffer,
+};
+
+const ConnectedNextForm = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NextForm);
+
+export default ConnectedNextForm;

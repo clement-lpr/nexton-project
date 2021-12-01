@@ -7,3 +7,7 @@ const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+export const selectOffers = (state: RootState) => state.offers.offer;
+
+export default store;
