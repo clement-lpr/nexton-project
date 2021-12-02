@@ -1,11 +1,13 @@
 export default interface Offer {
   abilities: string;
-  abilityType: string;
   businessEngineer: string;
+  businessUnit: string;
   company: string;
   creationDate: string;
   description: string;
   experience: string;
-  job: string;
+  jobName: string;
   jobType: string;
+  location: string;
+  priority: string
 }

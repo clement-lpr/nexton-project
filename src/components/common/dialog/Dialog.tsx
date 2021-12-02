@@ -1,15 +1,14 @@
-import NextForm from "@components/common/form";
 import { Dialog, DialogTitle, Grid } from "@mui/material";
-
-const emails = ["username@gmail.com", "user02@gmail.com"];
+import { ReactElement } from "react";
 
 export interface Props {
+  content: ReactElement;
+  onClose: (value: string) => void;
   open: boolean;
   selectedValue: string;
-  onClose: (value: string) => void;
 }
 
-const NextSearch = (props: Props) => {
+const NextDialog = (props: Props) => {
   const { onClose, selectedValue, open } = props;
 
   const handleClose = () => {
@@ -25,11 +24,11 @@ const NextSearch = (props: Props) => {
       <DialogTitle>Création d'une offre</DialogTitle>
       <Grid container spacing={0.5} alignItems="center" justifyContent="center">
         <Grid item xs={12}>
-          <NextForm />
+          {props.content}
         </Grid>
       </Grid>
     </Dialog>
   );
 };
 
-export default NextSearch;
+export default NextDialog;

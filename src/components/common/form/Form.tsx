@@ -24,36 +24,26 @@ export const NextForm = (props: any) => {
   const dispatch = useDispatch();
 
   const onSubmit = (data: Offer) => {
-    // props.addOffer(data);
     dispatch(addOffer(data));
   };
 
-  //  const onAddTodo = useCallback(() => {
-  //      dispatch(addOffer(newTodoRef.current.value));
-  //      newTodoRef.current.value = "";
-  //    }
-  //  }, [dispatch]);
-
   return (
-    // <Paper
-    //   style={{
-    //     display: "grid",
-    //     gridRowGap: "20px",
-    //     padding: "20px",
-    //   }}
-    // >
     <>
-      <Grid container spacing={3}>
+      <Grid container spacing={3} style={{ padding: "20px" }}>
         <NextFormInputText
           name="company"
           control={control}
           label="Nom de l'entreprise"
         />
-        <NextFormInputText name="job" control={control} label="Nom du poste" />
+        <NextFormInputText
+          name="jobName"
+          control={control}
+          label="Nom du poste"
+        />
         <NextFormInputText
           name="jobType"
           control={control}
-          label="Type de poste"
+          label="Type de contrat"
         />
         <NextFormInputText
           name="businessEngineer"
@@ -68,7 +58,7 @@ export const NextForm = (props: any) => {
         <NextFormInputText
           name="experience"
           control={control}
-          label="Années d'expérience"
+          label="Ancienneté"
         />{" "}
         <NextFormInputText
           name="description"
@@ -80,35 +70,27 @@ export const NextForm = (props: any) => {
           control={control}
           label="Compétences"
         />{" "}
+        <NextFormInputText
+          name="location"
+          control={control}
+          label="Localisation"
+        />{" "}
+        <NextFormInputText
+          name="businessUnit"
+          control={control}
+          label="Business unit"
+        />{" "}
+        <NextFormInputText name="priority" control={control} label="Urgence" />{" "}
       </Grid>
-
-      {/* <FormInputRadio
-        name={"radioValue"}
-        control={control}
-        label={"Radio Input"}
-      />
-      <FormInputDropdown
-        name="dropdownValue"
-        control={control}
-        label="Dropdown Input"
-      />
-      <FormInputDate name="dateValue" control={control} label="Date Input" />
-      <FormInputMultiCheckbox
-        control={control}
-        setValue={setValue}
-        name={"checkboxValue"}
-        label={"Checkbox Input"}
-      />
-      <FormInputSlider
-        name={"sliderValue"}
-        control={control}
-        setValue={setValue}
-        label={"Slider Input"}
-      /> */}
-
-      <Grid container spacing={0.5} alignItems="center" justifyContent="center">
-        <Grid item xs={9}></Grid>
-        <Grid item xs={3}>
+      <Grid
+        container
+        spacing={0.5}
+        alignItems="center"
+        justifyContent="center"
+        style={{ padding: "20px" }}
+      >
+        <Grid item xs={6}></Grid>
+        <Grid item xs={2}>
           <Button
             style={{ marginLeft: "1em" }}
             onClick={handleSubmit(onSubmit)}
@@ -117,6 +99,9 @@ export const NextForm = (props: any) => {
             {" "}
             Créer{" "}
           </Button>
+        </Grid>
+
+        <Grid item xs={2}>
           <Button
             style={{ marginLeft: "1em" }}
             onClick={() => reset()}
@@ -128,7 +113,6 @@ export const NextForm = (props: any) => {
         </Grid>
       </Grid>
     </>
-    // </Paper>
   );
 };
 

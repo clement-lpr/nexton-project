@@ -1,6 +1,6 @@
-import NextForm from "@components/common/form";
+import NextDialog from "@components/common/dialog";
+import { NextForm } from "@components/common/form/Form";
 import NextSlider from "@components/common/form/slider";
-import NextDialog from "@components/offers/dialog";
 import NextSearch from "@components/offers/search";
 import { Button, Container, Grid } from "@mui/material";
 import React from "react";
@@ -55,20 +55,22 @@ const NextOffers = () => {
       <Container maxWidth="md"></Container>
 
       <Grid container spacing={0.5} alignItems="center" justifyContent="center">
-        <Grid item xs={12}>
+        <Grid item xs={5}>
           {" "}
+        </Grid>
+        <Grid item xs={6}>
           <div>
             <br />
             <Button variant="outlined" onClick={handleClickOpen}>
-              Open simple dialog
+              Créer une offre
             </Button>
             <NextDialog
               selectedValue={selectedValue}
               open={open}
               onClose={handleClose}
+              content={<NextForm />}
             />
           </div>
-          <NextForm />
         </Grid>
       </Grid>
     </>
