@@ -1,22 +1,14 @@
-import { Button, Grid, Paper, Typography } from "@mui/material";
+import Offer from "@models/offers.model";
+import { Button, Grid } from "@mui/material";
 import { addOffer } from "@redux/reducers/offerReducer/offerReducer";
 import { RootState, selectOffers } from "@redux/store";
 import { useForm } from "react-hook-form";
 import { connect, useDispatch, useSelector } from "react-redux";
 import NextFormInputText from "./textInput";
 
-interface IFormInput {
-  abilities: string;
-  businessEngineer: string;
-  company: string;
-  creationDate: string;
-  description: string;
-  experience: string;
-  name: string;
-}
-
 const defaultValues = {
   abilities: "",
+  abilityType: "",
   businessEngineer: "",
   company: "",
   creationDate: "",
@@ -26,12 +18,12 @@ const defaultValues = {
 };
 
 export const NextForm = (props: any) => {
-  const methods = useForm<IFormInput>({ defaultValues: defaultValues });
+  const methods = useForm<Offer>({ defaultValues: defaultValues });
   const { handleSubmit, reset, control } = methods;
   const offers = useSelector(selectOffers);
   const dispatch = useDispatch();
 
-  const onSubmit = (data: IFormInput) => {
+  const onSubmit = (data: Offer) => {
     // props.addOffer(data);
     dispatch(addOffer(data));
   };
@@ -43,21 +35,26 @@ export const NextForm = (props: any) => {
   //  }, [dispatch]);
 
   return (
-    <Paper
-      style={{
-        display: "grid",
-        gridRowGap: "20px",
-        padding: "20px",
-      }}
-    >
-      <Typography variant="h6"> Création d'une offre</Typography>
+    // <Paper
+    //   style={{
+    //     display: "grid",
+    //     gridRowGap: "20px",
+    //     padding: "20px",
+    //   }}
+    // >
+    <>
       <Grid container spacing={3}>
         <NextFormInputText
           name="company"
           control={control}
           label="Nom de l'entreprise"
         />
-        <NextFormInputText name="name" control={control} label="Nom du poste" />
+        <NextFormInputText name="job" control={control} label="Nom du poste" />
+        <NextFormInputText
+          name="jobType"
+          control={control}
+          label="Type de poste"
+        />
         <NextFormInputText
           name="businessEngineer"
           control={control}
@@ -130,7 +127,8 @@ export const NextForm = (props: any) => {
           </Button>
         </Grid>
       </Grid>
-    </Paper>
+    </>
+    // </Paper>
   );
 };
 

@@ -5,7 +5,7 @@ interface Props {
   label: string;
 }
 
-const NextSearch = (props: Props) => {
+const NextDialog = (props: Props) => {
   return (
     <Autocomplete
       disablePortal
@@ -16,4 +16,4 @@ const NextSearch = (props: Props) => {
   );
 };
 
-export default NextSearch;
+export default NextDialog;

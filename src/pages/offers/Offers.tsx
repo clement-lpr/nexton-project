@@ -1,9 +1,25 @@
-import NextForm from "@components/offers/form";
+import NextForm from "@components/common/form";
+import NextSlider from "@components/common/form/slider";
+import NextDialog from "@components/offers/dialog";
 import NextSearch from "@components/offers/search";
-import NextSlider from "@components/offers/slider";
-import { Container, Grid } from "@mui/material";
+import { Button, Container, Grid } from "@mui/material";
+import React from "react";
+
+const emails = ["username@gmail.com", "user02@gmail.com"];
 
 const NextOffers = () => {
+  const [open, setOpen] = React.useState(false);
+  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (value: string) => {
+    setOpen(false);
+    setSelectedValue(value);
+  };
+
   return (
     <>
       <Container maxWidth="lg">
@@ -30,7 +46,7 @@ const NextOffers = () => {
               name={"Date de l'offre"}
               // control={control}
               // setValue={setValue}
-              label={"Slider Input"}
+              label={"Expérience"}
             ></NextSlider>
           </Grid>
           <Grid item xs={7}></Grid>
@@ -41,6 +57,17 @@ const NextOffers = () => {
       <Grid container spacing={0.5} alignItems="center" justifyContent="center">
         <Grid item xs={12}>
           {" "}
+          <div>
+            <br />
+            <Button variant="outlined" onClick={handleClickOpen}>
+              Open simple dialog
+            </Button>
+            <NextDialog
+              selectedValue={selectedValue}
+              open={open}
+              onClose={handleClose}
+            />
+          </div>
           <NextForm />
         </Grid>
       </Grid>
