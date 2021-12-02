@@ -5,7 +5,7 @@ interface Props {
   label: string;
 }
 
-const NextDialog = (props: Props) => {
+const NextOffersSarch = (props: Props) => {
   return (
     <Autocomplete
       disablePortal
@@ -16,4 +16,4 @@ const NextDialog = (props: Props) => {
   );
 };
 
-export default NextDialog;
+export default NextOffersSarch;

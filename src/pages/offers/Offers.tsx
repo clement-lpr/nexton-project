@@ -1,15 +1,16 @@
 import NextDialog from "@components/common/dialog";
 import { NextForm } from "@components/common/form/Form";
 import NextSlider from "@components/common/form/slider";
-import NextSearch from "@components/offers/search";
+import NextOffersList from "@components/offers/list";
+import NextOfferSarch from "@components/offers/search";
 import { Button, Container, Grid } from "@mui/material";
+import "ag-grid-community/dist/styles/ag-grid.css";
+import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import React from "react";
-
-const emails = ["username@gmail.com", "user02@gmail.com"];
 
 const NextOffers = () => {
   const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+  const [selectedValue, setSelectedValue] = React.useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -30,16 +31,16 @@ const NextOffers = () => {
           justifyContent="center"
         >
           <Grid item xs={6}>
-            <NextSearch
+            <NextOfferSarch
               options={[]}
               label="Rechercher une compagnie"
-            ></NextSearch>
+            ></NextOfferSarch>
           </Grid>
           <Grid item xs={6}>
-            <NextSearch
+            <NextOfferSarch
               options={[]}
               label="Rechercher une compétence"
-            ></NextSearch>
+            ></NextOfferSarch>
           </Grid>
           <Grid item xs={3}>
             <NextSlider
@@ -52,8 +53,6 @@ const NextOffers = () => {
           <Grid item xs={7}></Grid>
         </Grid>
       </Container>
-      <Container maxWidth="md"></Container>
-
       <Grid container spacing={0.5} alignItems="center" justifyContent="center">
         <Grid item xs={5}>
           {" "}
@@ -71,6 +70,11 @@ const NextOffers = () => {
               content={<NextForm />}
             />
           </div>
+        </Grid>
+      </Grid>
+      <Grid container spacing={0.5} alignItems="center" justifyContent="center">
+        <Grid item xs={11}>
+          <NextOffersList />
         </Grid>
       </Grid>
     </>
