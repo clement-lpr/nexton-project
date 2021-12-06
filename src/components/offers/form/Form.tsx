@@ -1,86 +1,88 @@
+import NextFormInputText from "@common/form/textInput";
 import Offer from "@models/offers.model";
 import { Button, Grid } from "@mui/material";
-import { addOffer } from "@redux/reducers/offerReducer/offerReducer";
-import { RootState, selectOffers } from "@redux/store";
+import { addOffer } from "@pages/offers/offers.slice";
+import { RootState } from "@redux/store";
 import { useForm } from "react-hook-form";
-import { connect, useDispatch, useSelector } from "react-redux";
-import NextFormInputText from "./textInput";
+import { connect } from "react-redux";
 
-const defaultValues = {
-  abilities: "",
-  abilityType: "",
-  businessEngineer: "",
-  company: "",
-  creationDate: "",
-  description: "",
-  experience: "",
-  name: "",
-};
+export interface Props {
+  onSubmit: (data: Offer) => void;
+  defaultValues: Offer;
+}
 
-export const NextForm = (props: any) => {
-  const methods = useForm<Offer>({ defaultValues: defaultValues });
+export const NextOffersForm = (props: Props) => {
+  const methods = useForm<Offer>({ defaultValues: props.defaultValues });
   const { handleSubmit, reset, control } = methods;
-  const offers = useSelector(selectOffers);
-  const dispatch = useDispatch();
-
-  const onSubmit = (data: Offer) => {
-    dispatch(addOffer(data));
-  };
-
   return (
     <>
       <Grid container spacing={3} style={{ padding: "20px" }}>
         <NextFormInputText
           name="company"
+          id="company"
           control={control}
           label="Nom de l'entreprise"
         />
         <NextFormInputText
           name="jobName"
+          id="jobName"
           control={control}
           label="Nom du poste"
         />
         <NextFormInputText
           name="jobType"
+          id="jobType"
           control={control}
           label="Type de contrat"
         />
         <NextFormInputText
           name="businessEngineer"
+          id="businessEngineer"
           control={control}
           label="Ingénieur d'affaire"
         />{" "}
         <NextFormInputText
           name="creationDate"
+          id="creationDate"
           control={control}
           label="Date de création"
         />
         <NextFormInputText
           name="experience"
+          id="experience"
           control={control}
           label="Ancienneté"
         />{" "}
         <NextFormInputText
           name="description"
+          id="description"
           control={control}
           label="Description"
         />{" "}
         <NextFormInputText
           name="abilities"
+          id="abilities"
           control={control}
           label="Compétences"
         />{" "}
         <NextFormInputText
           name="location"
+          id="location"
           control={control}
           label="Localisation"
         />{" "}
         <NextFormInputText
           name="businessUnit"
+          id="businessUnit"
           control={control}
           label="Business unit"
         />{" "}
-        <NextFormInputText name="priority" control={control} label="Urgence" />{" "}
+        <NextFormInputText
+          name="priority"
+          id="priority"
+          control={control}
+          label="Urgence"
+        />{" "}
       </Grid>
       <Grid
         container
@@ -93,7 +95,7 @@ export const NextForm = (props: any) => {
         <Grid item xs={2}>
           <Button
             style={{ marginLeft: "1em" }}
-            onClick={handleSubmit(onSubmit)}
+            onClick={handleSubmit(props.onSubmit)}
             variant={"contained"}
           >
             {" "}
@@ -124,6 +126,6 @@ const mapDispatchToProps = {
 const ConnectedNextForm = connect(
   mapStateToProps,
   mapDispatchToProps
-)(NextForm);
+)(NextOffersForm);
 
 export default ConnectedNextForm;

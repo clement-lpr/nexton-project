@@ -1,6 +1,8 @@
 export default interface FormInputProps {
   name: string;
+  id: string;
   control: any;
   label: string;
-  setValue?: any;
+  options?: readonly string[];
+  setValue?: (name: string, item: any[]) => void;
 }

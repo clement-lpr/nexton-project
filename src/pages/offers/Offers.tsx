@@ -1,62 +1,54 @@
 import NextDialog from "@components/common/dialog";
-import { NextForm } from "@components/common/form/Form";
-import NextSlider from "@components/common/form/slider";
+import { NextOffersForm } from "@components/offers/form/Form";
 import NextOffersList from "@components/offers/list";
 import NextOfferSarch from "@components/offers/search";
-import { Button, Container, Grid } from "@mui/material";
+import Offer from "@models/offers.model";
+import { Button, Grid } from "@mui/material";
+import { useNextDispatch } from "@redux/hook";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
-import React from "react";
+import { useState } from "react";
+import { addOffer } from "./offers.slice";
+
+const defaultValues: Offer = {
+  abilities: "",
+  businessEngineer: "",
+  businessUnit: "",
+  company: "",
+  creationDate: "",
+  description: "",
+  experience: "",
+  jobName: "",
+  jobType: "temps plein",
+  location: "",
+  priority: "",
+};
 
 const NextOffers = () => {
-  const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState("");
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const [selectedValue] = useState(defaultValues);
+
+  const dispatch = useNextDispatch();
 
   const handleClickOpen = () => {
-    setOpen(true);
+    setIsDialogOpen(!isDialogOpen);
   };
 
-  const handleClose = (value: string) => {
-    setOpen(false);
-    setSelectedValue(value);
+  const handleClose = () => {
+    setIsDialogOpen(!isDialogOpen);
+  };
+
+  const handleSubmit = (data: Offer) => {
+    dispatch(addOffer(data));
+    setIsDialogOpen(!isDialogOpen);
   };
 
   return (
     <>
-      <Container maxWidth="lg">
-        <Grid
-          container
-          spacing={0.5}
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Grid item xs={6}>
-            <NextOfferSarch
-              options={[]}
-              label="Rechercher une compagnie"
-            ></NextOfferSarch>
-          </Grid>
-          <Grid item xs={6}>
-            <NextOfferSarch
-              options={[]}
-              label="Rechercher une compétence"
-            ></NextOfferSarch>
-          </Grid>
-          <Grid item xs={3}>
-            <NextSlider
-              name={"Date de l'offre"}
-              // control={control}
-              // setValue={setValue}
-              label={"Expérience"}
-            ></NextSlider>
-          </Grid>
-          <Grid item xs={7}></Grid>
-        </Grid>
-      </Container>
+      <NextOfferSarch></NextOfferSarch>
       <Grid container spacing={0.5} alignItems="center" justifyContent="center">
-        <Grid item xs={5}>
-          {" "}
-        </Grid>
+        <Grid item xs={5}></Grid>
         <Grid item xs={6}>
           <div>
             <br />
@@ -64,11 +56,15 @@ const NextOffers = () => {
               Créer une offre
             </Button>
             <NextDialog
-              selectedValue={selectedValue}
-              open={open}
+              isOpen={isDialogOpen}
+              id="offer-create-dialog"
               onClose={handleClose}
-              content={<NextForm />}
-            />
+            >
+              <NextOffersForm
+                defaultValues={selectedValue}
+                onSubmit={handleSubmit}
+              />
+            </NextDialog>
           </div>
         </Grid>
       </Grid>

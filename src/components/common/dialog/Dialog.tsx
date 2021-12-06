@@ -1,33 +1,32 @@
 import { Dialog, DialogTitle, Grid } from "@mui/material";
-import { ReactElement } from "react";
+import { ReactNode } from "react";
 
 export interface Props {
-  content: ReactElement;
-  onClose: (value: string) => void;
-  open: boolean;
-  selectedValue: string;
+  children: ReactNode;
+  onClose: () => void;
+  id: string;
+  isOpen: boolean;
 }
 
 const NextDialog = (props: Props) => {
-  const { onClose, selectedValue, open } = props;
-
-  const handleClose = () => {
-    onClose(selectedValue);
-  };
-
-  const handleListItemClick = (value: string) => {
-    onClose(value);
-  };
+  const { children, id, isOpen, onClose } = props;
 
   return (
-    <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Création d'une offre</DialogTitle>
-      <Grid container spacing={0.5} alignItems="center" justifyContent="center">
-        <Grid item xs={12}>
-          {props.content}
+    <div id={id}>
+      <Dialog onClose={onClose} open={isOpen}>
+        <DialogTitle>Création d'une offre: {id}</DialogTitle>
+        <Grid
+          container
+          spacing={0.5}
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Grid item xs={12}>
+            {children}
+          </Grid>
         </Grid>
-      </Grid>
-    </Dialog>
+      </Dialog>
+    </div>
   );
 };
 

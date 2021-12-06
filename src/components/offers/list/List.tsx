@@ -1,5 +1,6 @@
+import { GridReadyEvent } from "ag-grid-community";
 import { AgGridColumn, AgGridReact } from "ag-grid-react";
-import React from "react";
+import { useState } from "react";
 
 const NextOffersList = () => {
   const rowData = [
@@ -12,6 +13,7 @@ const NextOffersList = () => {
       experience: "Confirmé",
       location: "IDF",
       businessUnit: "Telecom/Media",
+      priority: "",
     },
     {
       company: "BNP",
@@ -22,6 +24,7 @@ const NextOffersList = () => {
       experience: "Confirmé",
       location: "IDF",
       businessUnit: "Banque",
+      priority: "Urgent",
     },
     {
       company: "Orange",
@@ -32,6 +35,7 @@ const NextOffersList = () => {
       experience: "Sénior",
       location: "IDF",
       businessUnit: "Telecom/Media",
+      priority: "",
     },
     {
       company: "Canal+",
@@ -42,15 +46,35 @@ const NextOffersList = () => {
       experience: "Junior",
       location: "IDF",
       businessUnit: "Telecom/Media",
+      minWidth: 50,
+      priority: "Urgent",
     },
   ];
 
+  const [gridApi, setGridApi] = useState({});
+  const [gridColumnApi, setGridColumnApi] = useState({});
+
+  const onGridReady = (params: GridReadyEvent) => {
+    setGridApi(params.api);
+    setGridColumnApi(params.columnApi);
+    params.api.sizeColumnsToFit();
+  };
+
   return (
-    <div
-      className="ag-theme-alpine"
-      style={{ padding: 20, height: 400, width: "100%" }}
-    >
-      <AgGridReact rowData={rowData}>
+    <div className="ag-theme-alpine" style={{ padding: 20 }}>
+      <AgGridReact
+        rowData={rowData}
+        defaultColDef={{
+          enableRowGroup: true,
+          enablePivot: true,
+          enableValue: true,
+          sortable: true,
+          filter: true,
+          resizable: true,
+        }}
+        domLayout={"autoHeight"}
+        onGridReady={onGridReady}
+      >
         <AgGridColumn
           field="company"
           headerName="Entreprise"
@@ -90,6 +114,12 @@ const NextOffersList = () => {
         <AgGridColumn
           field="businessEngineer"
           headerName="Type de contrat"
+          sortable={true}
+          filter={true}
+        ></AgGridColumn>
+        <AgGridColumn
+          field="priority"
+          headerName="Urgent"
           sortable={true}
           filter={true}
         ></AgGridColumn>

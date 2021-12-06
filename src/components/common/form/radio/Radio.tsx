@@ -1,4 +1,3 @@
-import Option from "@models/option.model";
 import {
   FormControl,
   FormControlLabel,
@@ -10,22 +9,22 @@ import React from "react";
 import { Controller } from "react-hook-form";
 import FormInputProps from "../formInputProps";
 
-const options: Option[] = [
+const options = [
   {
-    label: "Radio Option 1",
+    label: "Junior",
     value: "1",
   },
   {
-    label: "Radio Option 2",
+    label: "Confirmé",
     value: "2",
+  },
+  {
+    label: "Sénior",
+    value: "3",
   },
 ];
 
-const NextFormCheckbox: React.FC<FormInputProps> = ({
-  name,
-  control,
-  label,
-}) => {
+const NextFormRadio: React.FC<FormInputProps> = ({ name, control, label }) => {
   const generateRadioOptions = () => {
     return options.map((singleOption) => (
       <FormControlLabel
@@ -47,7 +46,7 @@ const NextFormCheckbox: React.FC<FormInputProps> = ({
           fieldState: { error },
           formState,
         }) => (
-          <RadioGroup value={value || ""} onChange={onChange}>
+          <RadioGroup row value={value} onChange={onChange}>
             {generateRadioOptions()}
           </RadioGroup>
         )}
@@ -56,4 +55,4 @@ const NextFormCheckbox: React.FC<FormInputProps> = ({
   );
 };
 
-export default NextFormCheckbox;
+export default NextFormRadio;

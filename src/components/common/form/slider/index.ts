@@ -1,3 +1,3 @@
-import NextSlider from "./Slider";
+import NextFormSlider from "./Slider";
 
-export default NextSlider;
+export default NextFormSlider;

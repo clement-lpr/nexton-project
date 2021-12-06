@@ -11,7 +11,7 @@ interface FormInputProps {
   setValue?: any;
 }
 
-const NextSlider = ({ name, label }: FormInputProps) => {
+const NextFormSlider = ({ name, label }: FormInputProps) => {
   // const [sliderValue, setSliderValue] = useState<number>(30);
 
   // useEffect(() => {
@@ -61,4 +61,4 @@ const NextSlider = ({ name, label }: FormInputProps) => {
   );
 };
 
-export default NextSlider;
+export default NextFormSlider;
