@@ -1,4 +1,5 @@
 import NextFormInputText from "@common/form/textInput";
+import NextFormInputDropdown from "@components/common/form/dropdown";
 import Offer from "@models/offers.model";
 import { Button, Grid } from "@mui/material";
 import { addOffer } from "@pages/offers/offers.slice";
@@ -47,12 +48,12 @@ export const NextOffersForm = (props: Props) => {
           control={control}
           label="Date de création"
         />
-        <NextFormInputText
+        <NextFormInputDropdown
           name="experience"
           id="experience"
           control={control}
           label="Ancienneté"
-        />{" "}
+        />
         <NextFormInputText
           name="description"
           id="description"

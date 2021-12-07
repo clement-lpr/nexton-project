@@ -20,10 +20,14 @@ const NexFormAutocomplete = ({
           formState,
         }) => (
           <Autocomplete
-            disablePortal
+            multiple
             id={id}
-            options={options ? options : [""]}
-            renderInput={(params) => <TextField {...params} label={label} />}
+            filterSelectedOptions
+            options={options ? options : [{ label: "Empty", value: "" }]}
+            getOptionLabel={(option) => option.label}
+            renderInput={(params) => (
+              <TextField {...params} variant="standard" label={label} />
+            )}
           />
         )}
       />

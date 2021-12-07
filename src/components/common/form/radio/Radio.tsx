@@ -31,6 +31,7 @@ const NextFormRadio: React.FC<FormInputProps> = ({ name, control, label }) => {
         value={singleOption.value}
         label={singleOption.label}
         control={<Radio />}
+        key={singleOption.value}
       />
     ));
   };
@@ -46,7 +47,11 @@ const NextFormRadio: React.FC<FormInputProps> = ({ name, control, label }) => {
           fieldState: { error },
           formState,
         }) => (
-          <RadioGroup row value={value} onChange={onChange}>
+          <RadioGroup
+            row
+            value={value ? value : { label: "Empty", value: "" }}
+            onChange={onChange}
+          >
             {generateRadioOptions()}
           </RadioGroup>
         )}
