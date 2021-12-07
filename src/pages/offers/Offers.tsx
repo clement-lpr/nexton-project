@@ -5,6 +5,7 @@ import NextOfferSarch from "@components/offers/search";
 import Offer from "@models/offers.model";
 import { Button, Grid } from "@mui/material";
 import { useNextDispatch } from "@redux/hook";
+import { useGetOfferByIdQuery } from "@services/offer";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import { useState } from "react";
@@ -19,7 +20,7 @@ const defaultValues: Offer = {
   description: "",
   experience: "",
   jobName: "",
-  jobType: "temps plein",
+  jobType: "Temps plein",
   location: "",
   priority: "",
 };
@@ -43,6 +44,8 @@ const NextOffers = () => {
     dispatch(addOffer(data));
     setIsDialogOpen(!isDialogOpen);
   };
+
+  const { data, error, isLoading } = useGetOfferByIdQuery("charizard");
 
   return (
     <>
@@ -69,8 +72,24 @@ const NextOffers = () => {
         </Grid>
       </Grid>
       <Grid container spacing={0.5} alignItems="center" justifyContent="center">
-        <Grid item xs={11}>
+        <Grid item xs={1}></Grid>
+
+        <Grid item xs={10}>
           <NextOffersList />
+        </Grid>
+        <Grid item xs={1}></Grid>
+
+        <Grid item xs={12}>
+          {error ? (
+            <>Oh no, there was an error</>
+          ) : isLoading ? (
+            <>Loading...</>
+          ) : data ? (
+            <div style={{ textAlign: "center" }}>
+              <h3>{data.species.name}</h3>
+              <img src={data.sprites.front_shiny} alt={data.species.name} />
+            </div>
+          ) : null}
         </Grid>
       </Grid>
     </>

@@ -32,6 +32,7 @@ export const apiSlice = createApi({
     };
   },
 });
+
 interface OfferState {
   offer: Offer[];
 }

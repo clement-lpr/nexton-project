@@ -2,11 +2,12 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "@components/*": ["components/*"],
       "@common/*": ["components/common/*"],
+      "@components/*": ["components/*"],
       "@models/*": ["models/*"],
       "@pages/*": ["pages/*"],
-      "@redux/*": ["redux/*"]
+      "@redux/*": ["redux/*"],
+      "@services/*": ["services/*"]
     }
   }
 }

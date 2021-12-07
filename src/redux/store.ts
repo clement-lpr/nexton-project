@@ -1,10 +1,14 @@
 import offerReducer from "@pages/offers/offers.slice";
 import { configureStore } from "@reduxjs/toolkit";
+import { offerApi } from "@services/offer";
 
 const store = configureStore({
   reducer: {
     offers: offerReducer,
-    // [apiSlice.reducerPath]: apiSlice.reducer,
+    [offerApi.reducerPath]: offerApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) => {
+    return getDefaultMiddleware().concat(offerApi.middleware);
   },
 });
 

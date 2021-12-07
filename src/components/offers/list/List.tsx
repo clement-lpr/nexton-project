@@ -61,7 +61,7 @@ const NextOffersList = () => {
   };
 
   return (
-    <div className="ag-theme-alpine" style={{ padding: 20 }}>
+    <div className="ag-theme-alpine" style={{ paddingTop: 20 }}>
       <AgGridReact
         rowData={rowData}
         defaultColDef={{
