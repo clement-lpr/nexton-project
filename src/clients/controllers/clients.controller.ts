@@ -2,6 +2,7 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { Client } from '../schemas/client.model';
 import { ClientsRepository } from '../repositories/clients.repository';
+import { ApiParam } from '@nestjs/swagger';
 
 @Controller('clients')
 export class ClientsController {
@@ -16,6 +17,7 @@ export class ClientsController {
     }
 
   @Get(':buId')
+  @ApiParam({ name: 'Business unit Id', required: true})
   async findAllClients(@Param('buId') buId) {
         return await this.clientsRepository.getClientsByBu(buId);
   }
