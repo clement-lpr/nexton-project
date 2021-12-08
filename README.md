@@ -28,14 +28,14 @@
 
 ## Installation
 
-Run docker and execute
 
 ```bash
+# Run docker and execute
 $ docker-compose up 
-```
 
-```bash
+# Install npm dependencies
 $ npm install
+
 ```
 
 
