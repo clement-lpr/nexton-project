@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import * as mongoose from 'mongoose';
 
 export const OfferSchema = new mongoose.Schema({
@@ -10,20 +11,44 @@ export const OfferSchema = new mongoose.Schema({
   jobName: { type: String },
   location: { type: String },
   priority: { type: String },
-  creationDate: { type: String }
+},
+{
+  timestamps: true
 });
 
-export interface Offer extends mongoose.Document  {
+export class Offer extends mongoose.Document  {
   id: string;
-  abilities: string;
+
+  @ApiProperty()
+  abilities: Array<string>;
+
+  @ApiProperty()
   businessEngineer: string;
+
+  @ApiProperty()
   businessUnit: string;
+
+  @ApiProperty()
   company: string;
-  creationDate: string;
+
+  @ApiProperty()
   description: string;
+
+  @ApiProperty()
   experience: string;
+
+  @ApiProperty()
   jobName: string;
+
+  @ApiProperty()
   jobType: string;
+
+  @ApiProperty()
+  // @ApiProperty({ enum: ['IDF', 'Bordeaux', 'Lille']})
   location: string;
+
+  @ApiProperty()
+  // @ApiProperty({ enum: ['Low', 'High', 'Highest']})
   priority: string
+
 }
