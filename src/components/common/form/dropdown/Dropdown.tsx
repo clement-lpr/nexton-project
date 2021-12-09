@@ -9,7 +9,7 @@ const options = [
   },
   {
     label: "Confirmé",
-    value: "1",
+    value: "2",
   },
   {
     label: "Sénior",

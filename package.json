@@ -55,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.177",
     "craco-alias": "^3.0.1"
   }
 }
