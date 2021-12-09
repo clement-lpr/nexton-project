@@ -10,7 +10,7 @@ interface IFormInput {
   checkboxValue: string[];
   dateValue: Date;
   dropdownValue: string;
-  sliderValue: number;
+  sliderValue?: number;
 }
 
 const defaultValues = {
