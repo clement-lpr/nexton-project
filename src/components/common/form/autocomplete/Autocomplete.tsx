@@ -64,17 +64,17 @@ const NexFormAutocomplete = ({
     }
   };
 
-  // useEffect(() => {
-  //   if (!open) {
-  //     setOptionsj([]);
-  //   }
-  // }, [open]);
-
   useEffect(() => {
-    getOptionsDelayed(inputValue, (filteredOptions: any) => {
-      setOptionsj([filteredOptions]);
-    });
-  }, [inputValue, getOptionsDelayed]);
+    if (!open) {
+      setOptionsj([]);
+    }
+  }, [open]);
+
+  // useEffect(() => {
+  //   getOptionsDelayed(inputValue, (filteredOptions: any) => {
+  //     setOptionsj([filteredOptions]);
+  //   });
+  // }, [inputValue, getOptionsDelayed]);
 
   return (
     <Grid item xs={12} md={12}>
